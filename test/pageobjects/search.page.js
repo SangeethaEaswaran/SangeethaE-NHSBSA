@@ -4,7 +4,7 @@ const json2xls = require('json2xls');
 const fs = require("fs");
 export class SearchPage {
   async openWebsite() {
-   await browser.url("https://www.jobs.nhs.uk/candidate/search");
+   await browser.url("/");
    await browser.maximizeWindow();
    await this.acceptCookies();
   }

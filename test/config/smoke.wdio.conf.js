@@ -8,9 +8,9 @@ exports.config = merge.all(
         {
           maxInstances: parseInt(process.env.MAXINSTANCES),
           browserName: "chrome",
-          // browserVersion: 'stable' ,
+          browserVersion: '117' ,
           'goog:chromeOptions': {
-            '--headless'
+            args: ['headless', 'disable-gpu']
           },
           specs: ["../features/smoke/searchJobs.smoke.feature"],
         },
