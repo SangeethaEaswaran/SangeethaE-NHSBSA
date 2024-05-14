@@ -1,7 +1,7 @@
 {
   "name": "SangeethaE-NHSBSA",
   "type": "commonjs",
-  "devDependencies": {
+  "dependencies": {
     "@axe-core/webdriverio": "^4.9.0",
     "@babel/core": "^7.24.5",
     "@babel/preset-env": "^7.24.5",
@@ -18,8 +18,10 @@
     "fs-extra": "^11.2.0",
     "multiple-cucumber-html-reporter": "^3.6.2",
     "prettier": "3.2.5",
+    "uuid": "^9.0.1",
     "wdio-chromedriver-service": "^8.1.1",
     "wdio-html-nice-reporter": "^8.1.6",
+    "wdio-html-reporter": "^1.0.2",
     "wdio-video-reporter": "^5.2.0"
   },
   "scripts": {
@@ -27,9 +29,5 @@
     "smoke": "npx wdio run ./test/config/smoke.wdio.conf.js",
     "regression": "npx wdio run ./test/config/regression.wdio.conf.js",
     "accessibility": "npx wdio run ./test/config/accessibility.wdio.conf.js"
-  },
-  "dependencies": {
-    "react": "^18.3.1",
-    "wdio-html-reporter": "^1.0.2"
   }
 }

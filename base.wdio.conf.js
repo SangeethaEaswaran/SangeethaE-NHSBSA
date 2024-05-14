@@ -1,4 +1,7 @@
 const fs = require("fs-extra");
+import { v4 as uuidv4 } from 'uuid'
+const publishCucumberReport = require('@wdio/cucumber-framework');
+
 // import {ReportGenerator, HtmlReporter} from 'wdio-html-nice-reporter';
 // let reportAggregator;
 const report = require("multiple-cucumber-html-reporter");
@@ -180,7 +183,11 @@ exports.config = {
         // <number> timeout for step definitions
         timeout: 60000,
         // <boolean> Enable this config to treat undefined definitions as warnings.
-        ignoreUndefinedDefinitions: false
+        ignoreUndefinedDefinitions: false,
+        format: [
+            ['message', `./reports/${uuidv4()}.ndjson`],
+            ['json', './reports/test-report.json']
+        ]
     },
 
 
@@ -380,8 +387,9 @@ exports.config = {
      * @param {Array.<Object>} capabilities list of capabilities details
      * @param {<Object>} results object containing test results
      */
-    // onComplete: function(exitCode, config, capabilities, results) {
-    // },
+    onComplete: function(exitCode, config, capabilities, results) {
+         publishCucumberReport('./reports');
+    },
     /**
     * Gets executed when a refresh happens.
     * @param {string} oldSessionId session ID of the old session
