@@ -10,7 +10,16 @@ exports.config = merge.all(
           browserName: "chrome",
           browserVersion: '117' ,
           'goog:chromeOptions': {
-            args: ['headless', 'disable-gpu']
+            args: [
+              '--headless', 
+              '--disable-gpu',
+              '--whitelisted-ips',
+              '--start-maximized',
+              '--incognito',
+              '--disable-popup-blocking',
+              '--ignore-certificate-errors',
+              '--disable-extensions'
+            ]
           },
           specs: ["../features/smoke/searchJobs.smoke.feature"],
         },
