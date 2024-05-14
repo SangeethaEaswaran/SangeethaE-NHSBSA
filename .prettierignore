@@ -1,0 +1,3 @@
+# Ignore artifacts:
+node-modules
+package-lock.json
