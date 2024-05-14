@@ -1,4 +1,3 @@
-import { browser } from "@wdio/globals";
 import { searchElements } from "../pageelements/search.elements";
 import AxeBuilder from '@axe-core/webdriverio'
 const json2xls = require('json2xls');
@@ -7,7 +6,7 @@ export class SearchPage {
   async openWebsite() {
    await browser.url("https://www.jobs.nhs.uk/candidate/search");
    await browser.maximizeWindow();
-  //  await this.acceptCookies();
+   await this.acceptCookies();
   }
   async acceptCookies() {
     await (await searchElements.btn_acceptcookiepolicy).click();
@@ -25,10 +24,30 @@ export class SearchPage {
     await (await searchElements.btn_moresearchoptions).click();
   }
 
-  async sortJobs() {
+  async sortJobs(value) {
+    console.log('value', value)
     var dropDown = await searchElements.dropdown_sortby;
     await dropDown.click();
-    await dropDown.selectByVisibleText('Date Posted')
+    let index ;
+    switch(value){
+      case 'newest': 
+      index = 2;
+      break;
+      case 'closing date': 
+      index = 1;
+      break;
+      case 'lowest to highest salary': 
+      index = 3;
+      break;
+      case 'highest to lowest salary': 
+      index = 4;
+      break;
+      default: 
+      index= 0;
+      break;
+    }
+    console.log('criteria=>', index)
+    await dropDown.selectByIndex(index);
   }
 
   async verifyAccessibility(){

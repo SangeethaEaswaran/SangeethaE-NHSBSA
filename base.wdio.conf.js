@@ -1,4 +1,8 @@
 const fs = require("fs-extra");
+// import {ReportGenerator, HtmlReporter} from 'wdio-html-nice-reporter';
+// let reportAggregator;
+const report = require("multiple-cucumber-html-reporter");
+
 
 exports.config = {
     //
@@ -23,7 +27,6 @@ exports.config = {
     // of the config file unless it's absolute.
     //
     specs: [
-        './test/**/*.feature'
     ],
     // Patterns to exclude.
     exclude: [
@@ -45,7 +48,7 @@ exports.config = {
     // and 30 processes will get spawned. The property handles how many capabilities
     // from the same test should run tests.
     //
-    maxInstances: 10,
+    maxInstances: parseInt(process.env.MAXINSTANCES),
     //
     // If you have trouble getting all important capabilities together, check out the
     // Sauce Labs platform configurator - a great tool to configure your capabilities:
@@ -111,10 +114,10 @@ exports.config = {
     // Make sure you have the wdio adapter package for the specific framework installed
     // before running any tests.
     framework: 'cucumber',
-    
+    injectGlobals: true,
     //
     // The number of times to retry the entire specfile when it fails as a whole
-    // specFileRetries: 1,
+    specFileRetries: parseInt(process.env.SPECRETRY),
     //
     // Delay in seconds between the spec file retry attempts
     // specFileRetriesDelay: 0,
@@ -126,6 +129,18 @@ exports.config = {
     // The only one supported by default is 'dot'
     // see also: https://webdriver.io/docs/dot-reporter
     reporters: [
+        // ['html', {
+        //     outputDir: './reports/html-reports/',
+        //     filename: 'report.html',
+        //     reportTitle: 'Test Report Title',
+        //     linkScreenshots: true,
+        //     //to show the report in a browser when done
+        //     showInBrowser: true,
+        //     collapseTests: false,
+        //     //to turn on screenshots after every test
+        //     useOnAfterCommandForScreenshot: false
+        // }
+        // ],
     ['video', {
         saveAllVideos: true,       // If true, also saves videos for successful test cases
         videoSlowdownMultiplier: 20, // Higher to get slower videos, lower for faster videos [Value 1-100]
@@ -183,6 +198,7 @@ exports.config = {
      */
     onPrepare: async function (config, capabilities) {
         let directories = [
+            "./reports/html-reporter",
             "./reports/screenshots",
             "./reports/video-reports",
             "./reports/allure-raw",
@@ -301,6 +317,32 @@ exports.config = {
      * @param {GherkinDocument.IFeature} feature  Cucumber feature object
      */
     // afterFeature: function (uri, feature) {
+    //     report.generate({
+    //         jsonDir: "./reports/allure-raw/",
+    //         reportPath: "./reports/html-report",
+    //         metadata: {
+    //           browser: {
+    //             name: "chrome",
+    //             version: "60",
+    //           },
+    //           device: "Local test machine",
+    //           platform: {
+    //             name: "ubuntu",
+    //             version: "16.04",
+    //           },
+    //         },
+    //         customData: {
+    //           title: "Run info",
+    //           data: [
+    //             { label: "Project", value: "Custom project" },
+    //             { label: "Release", value: "1.2.3" },
+    //             { label: "Cycle", value: "B11221.34321" },
+    //             { label: "Execution Start Time", value: "Nov 19th 2017, 02:31 PM EST" },
+    //             { label: "Execution End Time", value: "Nov 19th 2017, 02:56 PM EST" },
+    //           ],
+    //         },
+    //       });
+          
     // },
     
     /**

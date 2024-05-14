@@ -6,7 +6,11 @@ exports.config = merge.all(
     {
       capabilities: [
         {
+          maxInstances: parseInt(process.env.MAXINSTANCES),
           browserName: "chrome",
+          // browserVersion: 'stable' ,
+          'goog:chromeOptions': {
+          },
           specs: ["../features/smoke/searchJobs.smoke.feature"],
         },
       ],
