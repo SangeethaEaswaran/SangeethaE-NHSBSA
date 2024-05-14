@@ -10,6 +10,7 @@ exports.config = merge.all(
           browserName: "chrome",
           // browserVersion: 'stable' ,
           'goog:chromeOptions': {
+            '--headless'
           },
           specs: ["../features/smoke/searchJobs.smoke.feature"],
         },
