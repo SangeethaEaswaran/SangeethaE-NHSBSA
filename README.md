@@ -51,7 +51,7 @@ Test results are viewed on console
 - Feature file -> step definitions -> page objects -> page elements model implemented
 - Automated scenarios that provide most value and focus on critical functions adhering to test principles 
 
-Below exercise is incomplete:
+# Below exercise is incomplete:
 - Test should run in the framework doesnt need a downloaded or machine based driver  
     
     - Tried to https://www.npmjs.com/package/selenium-standalone , but faced error - ![alt text](image-2.png)use as a Docker Service but required more time complete it , note need to run - docker run -it -p 4444:4444 webdriverio/selenium-standalone
