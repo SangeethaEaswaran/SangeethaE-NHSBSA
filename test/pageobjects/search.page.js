@@ -14,7 +14,7 @@ export class SearchPage {
   async searchJobs(keyword, location) {
     await (await searchElements.input_keyword).setValue(keyword);
     await (await searchElements.input_location).setValue(location);
-    await (await searchElements.dropdown_distance).selectByIndex(4);
+    // await (await searchElements.dropdown_distance).selectByIndex(4);
     await this.selectSearch();
   }
   async searchJobsByCriteria(criteria, value) {
@@ -46,8 +46,9 @@ export class SearchPage {
   }
   async verifyJobsDisplay() {
     var searchResult = await searchElements.h2_searchresult;
-    expect(searchResult).toBeExisting();
+    await (searchResult).waitForDisplayed();
     console.log(await searchResult.getText());
+    expect(await searchResult.getText()).toMatch(/found/)
   }
 
   async selectMoreOptionsLnk() {

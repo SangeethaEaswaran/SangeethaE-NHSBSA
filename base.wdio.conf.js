@@ -1,5 +1,5 @@
 const fs = require("fs-extra");
-import { v4 as uuidv4 } from 'uuid'
+// import { v4 as uuidv4 } from 'uuid'
 const publishCucumberReport = require('@wdio/cucumber-framework');
 
 // import {ReportGenerator, HtmlReporter} from 'wdio-html-nice-reporter';
@@ -52,7 +52,9 @@ exports.config = {
     // and 30 processes will get spawned. The property handles how many capabilities
     // from the same test should run tests.
     //
-    // maxInstances: parseInt(process.env.MAXINSTANCES),
+    maxInstances: 10,
+    maxInstancesPerCapability: 10,
+
     //
     // If you have trouble getting all important capabilities together, check out the
     // Sauce Labs platform configurator - a great tool to configure your capabilities:
@@ -80,10 +82,10 @@ exports.config = {
     // - @wdio/sumologic-reporter
     // - @wdio/cli, @wdio/config, @wdio/utils
     // Level of logging verbosity: trace | debug | info | warn | error | silent
-    // logLevels: {
-    //     webdriver: 'info',
-    //     '@wdio/appium-service': 'info'
-    // },
+    logLevels: {
+        webdriver: 'info',
+        '@wdio/appium-service': 'info'
+    },
     //
     // If you only want to run your tests until a specific amount of tests have failed use
     // bail (default is 0 - don't bail, run all tests).
@@ -96,7 +98,7 @@ exports.config = {
     // baseUrl: 'https://www.jobs.nhs.uk/candidate/search',
     //
     // Default timeout for all waitFor* commands.
-    waitforTimeout: 10000,
+    waitforTimeout: 80000,
     //
     // Default timeout in milliseconds for request
     // if browser driver or grid doesn't send response
@@ -109,7 +111,24 @@ exports.config = {
     // Services take over a specific job you don't want to take care of. They enhance
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
-    // 'services': ["selenium-standalone"],
+    // 'services': ['chromedriver'],
+        // 'services': ['selenium-standalone'],
+        // path: '/wd/hub',
+        // port : 4444,
+        // services: [
+        //     [
+        //         'selenoid-standalone', { 
+        //             pathToBrowsersConfig: './browsers.json',
+        //             skipAutoPullImages: 'false',
+        //             customSelenoidContainerName: 'wdio-selenoid',
+        //             terminateWdioOnError: true,
+        //             selenoidVersion: 'latest-version',
+        //             port: 4444,
+        //             selenoidArgs: ['-limit', '10'],
+        //         },
+        //     ],
+        // ],
+    
     //
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
@@ -118,13 +137,13 @@ exports.config = {
     // Make sure you have the wdio adapter package for the specific framework installed
     // before running any tests.
     framework: 'cucumber',
-    // injectGlobals: true,
+    injectGlobals: true,
     //
     // The number of times to retry the entire specfile when it fails as a whole
-    // specFileRetries: parseInt(process.env.SPECRETRY),
+    specFileRetries: 0,
     //
     // Delay in seconds between the spec file retry attempts
-    // specFileRetriesDelay: 0,
+    specFileRetriesDelay: 0,
     //
     // Whether or not retried spec files should be retried immediately or deferred to the end of the queue
     // specFileRetriesDeferred: false,
@@ -145,16 +164,16 @@ exports.config = {
         //     useOnAfterCommandForScreenshot: false
         // }
         // ],
-    ['video', {
-        saveAllVideos: true,       // If true, also saves videos for successful test cases
-        videoSlowdownMultiplier: 20, // Higher to get slower videos, lower for faster videos [Value 1-100]
-        outputDir: "./reports/video-reports/",
-    }],
-    ['allure', {
-    outputDir: './reports/allure-raw/',
-    disableWebdriverStepsReporting: true,
-    disableWebdriverScreenshotsReporting: true,
-    }],
+    // ['video', {
+    //     saveAllVideos: true,       // If true, also saves videos for successful test cases
+    //     videoSlowdownMultiplier: 20, // Higher to get slower videos, lower for faster videos [Value 1-100]
+    //     outputDir: "./reports/video-reports/",
+    // }],
+    // ['allure', {
+    // outputDir: './reports/allure-raw/',
+    // disableWebdriverStepsReporting: true,
+    // disableWebdriverScreenshotsReporting: true,
+    // }],
     'spec',
     ],
 
@@ -181,7 +200,7 @@ exports.config = {
         // <string> (expression) only execute the features or scenarios with tags matching the expression
         tagExpression: '',
         // <number> timeout for step definitions
-        timeout: 60000,
+        timeout: 90000,
         // <boolean> Enable this config to treat undefined definitions as warnings.
         ignoreUndefinedDefinitions: false,
         // format: [
@@ -253,8 +272,8 @@ exports.config = {
      * @param {Array.<String>} specs        List of spec file paths that are to be run
      * @param {object}         browser      instance of created browser/device session
      */
-    // before: function (capabilities, specs) {
-    // },
+    before: function (capabilities, specs) {
+    },
     /**
      * Runs before a WebdriverIO command gets executed.
      * @param {string} commandName hook command name
@@ -317,6 +336,7 @@ exports.config = {
         //     console.log('inside true')
         //      browser.saveScreenshot("./reports/screenshots/screenshot.png")
         // }
+        // browser.reloadSession();
     },
     /**
      *
@@ -369,8 +389,9 @@ exports.config = {
      * @param {Array.<Object>} capabilities list of capabilities details
      * @param {Array.<String>} specs List of spec file paths that ran
      */
-    // after: function (result, capabilities, specs) {
-    // },
+    after: async function (result, capabilities, specs) {
+    //    await browser.reloadSession();
+    },
     /**
      * Gets executed right after terminating the webdriver session.
      * @param {object} config wdio configuration object

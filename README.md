@@ -50,4 +50,13 @@ Test results are viewed on console
 - Reusable step definitions are implemented using parameterisation to promote code reusability and reduce duplication
 - Feature file -> step definitions -> page objects -> page elements model implemented
 - Automated scenarios that provide most value and focus on critical functions adhering to test principles 
-- Test runs in the framework doesnt need a downloaded or machine based driver instead uses the automated setup of driver binaries from webdriverio- https://webdriver.io/docs/driverbinaries
+
+Below exercise is incomplete:
+- Test should run in the framework doesnt need a downloaded or machine based driver  
+    
+    - Tried to https://www.npmjs.com/package/selenium-standalone , but faced error - ![alt text](image-2.png)use as a Docker Service but required more time complete it , note need to run - docker run -it -p 4444:4444 webdriverio/selenium-standalone
+
+    - Tried to test using selenium-standalone service https://www.npmjs.com/package/wdio-selenoid-standalone-service - but faced this error ![alt text](image-1.png) and required more time to troubleshoot
+
+# yet to implement 
+parallel execution 

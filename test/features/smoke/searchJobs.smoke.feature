@@ -8,6 +8,6 @@ Feature: Smoke - Simple Job Search in the NHS website
   Then I should get a list of jobs which matches my preferences
   And I sort my search results by <SortCriteria> jobs
   Examples:
-  | Keyword | Location | SortCriteria             | 
-  | GP      | London   | newest                   | 
+  | Keyword | Location | SortCriteria  | 
+  | GP      | London   | newest        | 
   | QA      | Camden   | highest to lowest salary |

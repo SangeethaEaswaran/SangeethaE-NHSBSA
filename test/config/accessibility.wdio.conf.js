@@ -6,7 +6,8 @@ exports.config = merge.all(
     {
       capabilities: [
         {
-          browserName: "chrome",
+          // browserName: "chrome",
+          browserName: "firefox",
           specs: ["../features/accessibility/searchJobs.accessibility.feature"],
         },
       ],

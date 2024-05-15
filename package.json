@@ -22,8 +22,8 @@
     "wdio-chromedriver-service": "^8.1.1",
     "wdio-html-nice-reporter": "^8.1.6",
     "wdio-html-reporter": "^1.0.2",
-    "wdio-video-reporter": "^5.2.0",
-    "@wdio/selenium-standalone-service": "^8.15.0"
+    "wdio-selenium-standalone-service": "^0.0.12",
+    "wdio-video-reporter": "^5.2.0"
   },
   "scripts": {
     "prettier-watch": "npx onchange \"**/*\" -- prettier --write --ignore-unknown {{changed}}",
@@ -32,5 +32,6 @@
     "accessibility": "npx wdio run ./test/config/accessibility.wdio.conf.js"
   },
   "devDependencies": {
+    "wdio-selenoid-standalone-service": "^1.0.0"
   }
 }
