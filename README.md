@@ -43,7 +43,7 @@ Test results are viewed on console
 - wdio-video-reporter: 
 - wdio-html-reporter: 
 - multiple-cucumber-html-reporter:
-
+-@wdio/selenium-standalone-service
 
 # Exercise requirements 
 - Feature files are structured using Gherkin BDD syntax aiming to be easily clear and understandable for non-technical team members 

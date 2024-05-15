@@ -22,12 +22,15 @@
     "wdio-chromedriver-service": "^8.1.1",
     "wdio-html-nice-reporter": "^8.1.6",
     "wdio-html-reporter": "^1.0.2",
-    "wdio-video-reporter": "^5.2.0"
+    "wdio-video-reporter": "^5.2.0",
+    "@wdio/selenium-standalone-service": "^8.15.0"
   },
   "scripts": {
     "prettier-watch": "npx onchange \"**/*\" -- prettier --write --ignore-unknown {{changed}}",
     "smoke": "npx wdio run ./test/config/smoke.wdio.conf.js",
     "regression": "npx wdio run ./test/config/regression.wdio.conf.js",
     "accessibility": "npx wdio run ./test/config/accessibility.wdio.conf.js"
+  },
+  "devDependencies": {
   }
 }

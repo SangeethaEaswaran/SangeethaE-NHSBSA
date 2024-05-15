@@ -1,17 +1,47 @@
 import { searchElements } from "../pageelements/search.elements";
 import AxeBuilder from '@axe-core/webdriverio'
-const json2xls = require('json2xls');
 const fs = require("fs");
 export class SearchPage {
   async openWebsite() {
-   await browser.url("/");
-   await browser.maximizeWindow();
+   await browser.url("https://www.jobs.nhs.uk/candidate/search");
    await this.acceptCookies();
   }
   async acceptCookies() {
-    await (await searchElements.btn_acceptcookiepolicy).click();
+    var cookiepolicy = await searchElements.btn_acceptcookiepolicy;
+    if(await cookiepolicy.isDisplayed())
+    await (cookiepolicy).click();
   }
-  async searchJobs() {
+  async searchJobs(keyword, location) {
+    await (await searchElements.input_keyword).setValue(keyword);
+    await (await searchElements.input_location).setValue(location);
+    await (await searchElements.dropdown_distance).selectByIndex(4);
+    await this.selectSearch();
+  }
+  async searchJobsByCriteria(criteria, value) {
+    console.log("searchJobsByCriteria", criteria, value)
+    switch(criteria){
+      case 'keyword': 
+      await (await searchElements.input_keyword).setValue(value);
+      break;
+      case 'location': 
+      await (await searchElements.input_location).setValue(value);
+      break;
+      case 'employer': 
+      await (await searchElements.input_employer).setValue(value);
+      break;
+      case 'job-reference': 
+      await (await searchElements.input_jobreference).setValue(value);
+      break;
+      case 'distance': 
+      await (await searchElements.dropdown_distance).selectByIndex(4);
+      break;
+      default: 
+      break;
+    }
+    await this.selectSearch();
+  }
+  
+  async selectSearch() {
     await (await searchElements.btn_search).click();
   }
   async verifyJobsDisplay() {
@@ -55,8 +85,6 @@ export class SearchPage {
     const result = await builder.analyze();
     console.log('Acessibility Results:', result, result.violations.length);
     expect(result.violations.length).toBe(0);
-
-    const xls = json2xls(result);
     fs.writeFileSync('./reports/axe-reports/accessibility_results.txt', JSON.stringify(result));
 
     console.log('Acessibility Violatios:', result.violations.length);

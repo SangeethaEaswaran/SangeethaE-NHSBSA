@@ -52,15 +52,15 @@ exports.config = {
     // and 30 processes will get spawned. The property handles how many capabilities
     // from the same test should run tests.
     //
-    maxInstances: parseInt(process.env.MAXINSTANCES),
+    // maxInstances: parseInt(process.env.MAXINSTANCES),
     //
     // If you have trouble getting all important capabilities together, check out the
     // Sauce Labs platform configurator - a great tool to configure your capabilities:
     // https://saucelabs.com/platform/platform-configurator
     //
-    capabilities: [{
-        browserName: 'chrome'
-    }],
+    // capabilities: [{
+    //     browserName: 'chrome'
+    // }],
 
     //
     // ===================
@@ -80,10 +80,10 @@ exports.config = {
     // - @wdio/sumologic-reporter
     // - @wdio/cli, @wdio/config, @wdio/utils
     // Level of logging verbosity: trace | debug | info | warn | error | silent
-    logLevels: {
-        webdriver: 'info',
-        '@wdio/appium-service': 'info'
-    },
+    // logLevels: {
+    //     webdriver: 'info',
+    //     '@wdio/appium-service': 'info'
+    // },
     //
     // If you only want to run your tests until a specific amount of tests have failed use
     // bail (default is 0 - don't bail, run all tests).
@@ -93,7 +93,7 @@ exports.config = {
     // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
     // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
     // gets prepended directly.
-    baseUrl: 'https://www.jobs.nhs.uk/candidate/search',
+    // baseUrl: 'https://www.jobs.nhs.uk/candidate/search',
     //
     // Default timeout for all waitFor* commands.
     waitforTimeout: 10000,
@@ -109,7 +109,7 @@ exports.config = {
     // Services take over a specific job you don't want to take care of. They enhance
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
-    // services: ['chromedriver'],
+    // 'services': ["selenium-standalone"],
     //
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
@@ -118,10 +118,10 @@ exports.config = {
     // Make sure you have the wdio adapter package for the specific framework installed
     // before running any tests.
     framework: 'cucumber',
-    injectGlobals: true,
+    // injectGlobals: true,
     //
     // The number of times to retry the entire specfile when it fails as a whole
-    specFileRetries: parseInt(process.env.SPECRETRY),
+    // specFileRetries: parseInt(process.env.SPECRETRY),
     //
     // Delay in seconds between the spec file retry attempts
     // specFileRetriesDelay: 0,
@@ -184,10 +184,10 @@ exports.config = {
         timeout: 60000,
         // <boolean> Enable this config to treat undefined definitions as warnings.
         ignoreUndefinedDefinitions: false,
-        format: [
-            ['message', `./reports/${uuidv4()}.ndjson`],
-            ['json', './reports/test-report.json']
-        ]
+        // format: [
+        //     ['message', `./reports/${uuidv4()}.ndjson`],
+        //     ['json', './reports/test-report.json']
+        // ]
     },
 
 
@@ -312,11 +312,11 @@ exports.config = {
      * @param {object}                 context          Cucumber World object
      */
     afterScenario: function (world, result, context) {
-        console.log("after scenario "+ world, result, context)
-        if (true){
-            console.log('inside true')
-             browser.saveScreenshot("./reports/screenshots/screenshot.png")
-        }
+        // console.log("after scenario "+ world, result, context)
+        // if (true){
+        //     console.log('inside true')
+        //      browser.saveScreenshot("./reports/screenshots/screenshot.png")
+        // }
     },
     /**
      *
@@ -387,9 +387,9 @@ exports.config = {
      * @param {Array.<Object>} capabilities list of capabilities details
      * @param {<Object>} results object containing test results
      */
-    onComplete: function(exitCode, config, capabilities, results) {
-         publishCucumberReport('./reports');
-    },
+    // onComplete: function(exitCode, config, capabilities, results) {
+    //      publishCucumberReport('./reports');
+    // },
     /**
     * Gets executed when a refresh happens.
     * @param {string} oldSessionId session ID of the old session

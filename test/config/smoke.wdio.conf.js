@@ -6,21 +6,31 @@ exports.config = merge.all(
     {
       capabilities: [
         {
-          maxInstances: parseInt(process.env.MAXINSTANCES),
-          browserName: "chrome",
-          browserVersion: '117' ,
-          'goog:chromeOptions': {
-            args: [
-              '--headless', 
-              '--disable-gpu',
-              '--whitelisted-ips',
+          // maxInstances: parseInt(process.env.MAXINSTANCES),
+          // browserName: "chrome",
+          browserName: "firefox",
+
+          // browserVersion: '117' ,
+          // 'goog:chromeOptions': {
+          //   args: [
+          //     // '--headless', 
+          //     '--disable-gpu',
+          //     '--whitelisted-ips',
+          //     '--start-maximized',
+          //     '--incognito',
+          //     '--disable-popup-blocking',
+          //     '--ignore-certificate-errors',
+          //     '--disable-extensions'
+          //   ]
+          // },
+          "moz:firefoxOptions": {
+            "args": [
+              // "--headless",
               '--start-maximized',
               '--incognito',
-              '--disable-popup-blocking',
-              '--ignore-certificate-errors',
-              '--disable-extensions'
-            ]
-          },
+            ],
+            },
+    
           specs: ["../features/smoke/searchJobs.smoke.feature"],
         },
       ],
