@@ -8,13 +8,11 @@ Given("I am a job-seeker on NHS Jobs website", async () => {
 When(
   /^I put my preferences keyword-(.*),location-(.*) into the Search functionality$/,
   async (keyword, location) => {
-    console.log("keyword, location");
     await searchPage.searchJobs(keyword, location);
   },
 );
 
 When(/^I search for job by (.*) (.*)$/, async(criteria, value) => {
-  console.log("criteria, value");
   await searchPage.searchJobsByCriteria(criteria, value);
 });
 
@@ -23,7 +21,6 @@ await searchPage.verifyJobsDisplay();
 });
 
 Then(/^I sort my search results by (.*) jobs$/, async (value) => {
-  console.log('value=>', value)
   await searchPage.sortJobs(value);
 });
 
@@ -46,5 +43,5 @@ Then("I select search button", async () => {
 
 Then("I refine my search for below and apply filters", async (value) => {
   console.log('value=>', value)
-  // await searchPage.(value);
+  await searchPage.refineJobSearch(value);
 });

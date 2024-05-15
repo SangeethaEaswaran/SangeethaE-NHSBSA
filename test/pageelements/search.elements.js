@@ -41,8 +41,14 @@ export class SearchElements {
   get checkbox_fulltime() {
     return $("//*[@data-test='working-pattern-full-time']");
   }
+  get checkbox_permanent() {
+    return $("//*[@data-test='contract-type-permanent']");
+  }
   get btn_contracttype() {
     return $("//*[@data-test='filter-contract-type']");
+  }
+  get btn_applyfilter(){
+    return $("//*[@data-test='refine-search-button']");
   }
 }
 

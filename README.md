@@ -17,6 +17,10 @@ From the command line terminal
     - npm run regression
     - npm run accessibility
 
+# Test results 
+ Regression - ![alt text](image-3.png)
+ Smoke - ![alt text](image-4.png)
+ Accessibility - ![alt text](image-5.png)
 # Reporting used :
 Test results are viewed on console 
 1. Spec reporter : 
