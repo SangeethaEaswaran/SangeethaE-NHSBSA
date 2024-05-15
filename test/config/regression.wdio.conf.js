@@ -10,7 +10,7 @@ exports.config = merge.all(
           browserName: "chrome",
           'goog:chromeOptions': {
             args: [
-              '--headless', 
+              // '--headless', 
               '--disable-gpu',
               '--whitelisted-ips',
               '--start-maximized',

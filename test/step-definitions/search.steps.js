@@ -31,6 +31,10 @@ Then("I select more search options link", async () => {
   await searchPage.selectMoreOptionsLnk();
 });
 
+Then("I should not see any job results", async () => {
+  await searchPage.verifyNoJobResult();
+});
+
 Then("I should get accessibility results for my page", async () => {
   await searchPage.verifyAccessibility();
 });

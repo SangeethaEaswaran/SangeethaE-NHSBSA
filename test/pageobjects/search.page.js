@@ -51,6 +51,12 @@ export class SearchPage {
     expect(await searchResult.getText()).toMatch(/found/)
   }
 
+  async verifyNoJobResult(){
+    var searchResult = await searchElements.h2_searchresult;
+    await (searchResult).waitForDisplayed();
+    console.log(await searchResult.getText());
+    expect(await searchResult.getText()).toMatch(/No result found/)
+  }
   async selectMoreOptionsLnk() {
     await (await searchElements.btn_moresearchoptions).click();
   }
