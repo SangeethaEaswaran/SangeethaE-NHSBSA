@@ -41,7 +41,7 @@ Then("I select search button", async () => {
 });
 
 
-Then("I refine my search for below and apply filters", async (value) => {
-  console.log('value=>', value)
-  await searchPage.refineJobSearch(value);
+Then("I refine my search for below and apply filters", async (table) => {
+  console.log('value=>', table , table.rowsHash())
+  await searchPage.refineJobSearch(table.rowsHash());
 });

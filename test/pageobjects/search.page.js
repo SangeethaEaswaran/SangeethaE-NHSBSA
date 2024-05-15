@@ -103,15 +103,17 @@ export class SearchPage {
   }
 
   async refineJobSearch(value) {
-    console.log(value[0],value[1] );
+        console.log(`${value.workingpattern}, ${value.contracttype}`);
     var workingPatternBtn = await searchElements.btn_workingpattern;
     await workingPatternBtn.click();
-    await (await searchElements.checkbox_fulltime).click();
-     
+    if(`${value.workingpattern}` == 'fulltime')
+      await (await searchElements.checkbox_fulltime).click();
+    
     var contractTypeBtn = await searchElements.btn_contracttype;
     await contractTypeBtn.click();
-    await (await searchElements.checkbox_permanent).click();
-
+    if(`${value.contracttype}` == 'permanent')
+      await (await searchElements.checkbox_permanent).click();
+    
     var applyFilterBtn = await searchElements.btn_applyfilter;
     await applyFilterBtn.click();
   }
